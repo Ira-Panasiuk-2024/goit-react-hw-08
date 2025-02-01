@@ -8,4 +8,5 @@ const RestrictedRoute = ({ children }) => {
 
   return isLoggedIn ? <Navigate to={location?.state || '/contacts'} /> : children;
 };
+
 export default RestrictedRoute;

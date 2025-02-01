@@ -10,14 +10,12 @@ const AppBar = () => {
 
   return (
     <header className={css.header}>
-      {/* <div className="container"> */}
-      <div>
-        <nav className={css.navList}>
+      
+      <nav className={css.navList}>
           <Navigation />
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
-        </nav>
-      </div>
-      {/* </div> */}
+      </nav>
+        
     </header>
   );
 };

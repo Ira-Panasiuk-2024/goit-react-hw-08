@@ -34,32 +34,38 @@ const App = () => {
     <div className={css.container}>
       <Routes>
         <Route path="/" element={<Layout />}>
+          
           <Route index element={<HomePage />} />
+
           <Route
-            path="/register"
+            path="/registration"
             element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={<RegistrationPage />}
-              />
+              <RestrictedRoute>
+                <RegistrationPage />
+              </RestrictedRoute>
             }
           />
+
           <Route
             path="/login"
             element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={<LoginPage />}
-              />
+              <RestrictedRoute>
+                <LoginPage />
+              </RestrictedRoute>
             }
           />
+          
           <Route
             path="/contacts"
             element={
-              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+              <PrivateRoute>
+                <ContactsPage />
+              </PrivateRoute>
             }
           />
+
           <Route path="*" element={<NotFoundPage />} />
+
         </Route>
       </Routes>
     </div>
@@ -67,5 +73,3 @@ const App = () => {
 };
 
 export default App;
-
-// Welcome to the PhoneBook! Create an account or log in to unlock new horizons of communication!

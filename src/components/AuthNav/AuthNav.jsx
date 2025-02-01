@@ -4,11 +4,11 @@ import buildLinkClass from '../Navigation/buildLinkClass';
 const AuthNav = () => {
   return (
     <>
-      <NavLink to="/register" className={buildLinkClass}>
-        Register
+      <NavLink to="/registration" className={buildLinkClass}>
+        Registration
       </NavLink>
       <NavLink to="/login" className={buildLinkClass}>
-        Log In
+        Login
       </NavLink>
     </>
   );
