@@ -6,6 +6,7 @@ import SearchBox from '../../components/SearchBox/SearchBox';
 import ContactList from '../../components/ContactList/ContactList';
 import { fetchContacts } from '../../redux/contacts/operations';
 import { selectIsLoading } from '../../redux/contacts/selectors';
+import css from './ContactsPage.module.css';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const ContactsPage = () => {
 
   return (
     <>
-      <h2>Your contacts</h2>
+      <h2 className={css.title}>Your contacts</h2>
       <div>{isLoading && 'Request in progress...'}</div>
       <ContactForm />
       <SearchBox />

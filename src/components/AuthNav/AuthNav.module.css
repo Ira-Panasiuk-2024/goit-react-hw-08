@@ -7,7 +7,7 @@
 
     &:hover,
     &:focus {
-        color: teal;;
+        color: teal;
     }
 
     &.active {

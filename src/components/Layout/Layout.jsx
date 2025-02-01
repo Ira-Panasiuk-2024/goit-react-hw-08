@@ -6,7 +6,7 @@ import AppBar from '../AppBar/AppBar';
 const Layout = () => {
   return (
     <>
-      <Toaster position="top-left" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <Suspense fallback={null}>
         <AppBar />
         <Outlet />

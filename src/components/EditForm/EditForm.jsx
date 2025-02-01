@@ -3,6 +3,7 @@ import { useId } from 'react';
 import * as Yup from 'yup';
 import css from './EditForm.module.css';
 
+
 const EditFormSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
@@ -67,10 +68,11 @@ function EditForm({ contact, onSave, onCancel }) {
             Save
           </button>
 
-          <button className={css.btn} type="button" onClick={onCancel}>
+          <button className={css.btn} type="submit" onClick={onCancel}>
             Cancel
           </button>
         </div>
+   
       </Form>
     </Formik>
   );
