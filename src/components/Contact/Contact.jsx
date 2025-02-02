@@ -1,18 +1,19 @@
-import { useDispatch } from 'react-redux';
-import { HiUser } from 'react-icons/hi';
-import { BsFillTelephoneFill } from 'react-icons/bs';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { HiUser  } from 'react-icons/hi';
+import { BsFillTelephoneFill } from 'react-icons/bs';
 import EditForm from '../EditForm/EditForm';
+import ContactDeleteModal from '../ContactDeleteModal/ContactDeleteModal';
 import css from './Contact.module.css';
 import {
   deleteContactOperation,
   editContactOperation,
 } from '../../redux/contacts/operations';
-import { fetchContacts } from '../../redux/contacts/operations';
 
 function Contact({ id, name, number }) {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -20,7 +21,6 @@ function Contact({ id, name, number }) {
 
   const handleSave = updatedContact => {
     dispatch(editContactOperation(updatedContact));
-    dispatch(fetchContacts());
     setIsEditing(false);
   };
 
@@ -30,6 +30,15 @@ function Contact({ id, name, number }) {
 
   const handleDelete = () => {
     dispatch(deleteContactOperation(id));
+    setIsModalOpen(false);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -44,7 +53,7 @@ function Contact({ id, name, number }) {
         <>
           <div className={css.box}>
             <p className={css.text}>
-              <HiUser size={22} color="grey" />
+              <HiUser  size={22} color="grey" />
               {name}
             </p>
             <p className={css.text}>
@@ -58,12 +67,18 @@ function Contact({ id, name, number }) {
               Edit
             </button>
 
-            <button className={css.btn} type="button" onClick={handleDelete}>
+            <button className={css.btn} type="button" onClick={openModal}>
               Delete
             </button>
           </div>
         </>
       )}
+
+      <ContactDeleteModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        onDelete={handleDelete}
+      />
     </div>
   );
 }
