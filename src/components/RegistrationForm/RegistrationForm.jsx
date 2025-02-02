@@ -2,7 +2,6 @@ import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-// import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { registerThunk } from '../../redux/auth/operations';
 import css from './RegistrationForm.module.css';
 
@@ -30,7 +29,7 @@ const RegistrationForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (values, options) => {
-    console.log(values);
+    
     dispatch(registerThunk(values))
       .unwrap()
       .then(() => navigate('/'));
@@ -94,7 +93,7 @@ const RegistrationForm = () => {
             You already have account?
 
             <Link to='/login' className={css.link}>
-              Login!{' '}
+              Login !{' '}
             </Link>
 
           </p>

@@ -68,7 +68,7 @@ function EditForm({ contact, onSave, onCancel }) {
             Save
           </button>
 
-          <button className={css.btn} type="submit" onClick={onCancel}>
+          <button className={css.btn} type="button" onClick={onCancel}>
             Cancel
           </button>
         </div>

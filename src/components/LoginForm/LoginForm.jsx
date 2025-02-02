@@ -22,7 +22,7 @@ const LoginForm = () => {
  
 
   const handleSubmit = (values, options) => {
-    console.log(values);
+    
     dispatch(loginThunk(values));
     options.resetForm();
   };
