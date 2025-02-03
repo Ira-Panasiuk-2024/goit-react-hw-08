@@ -55,3 +55,15 @@ export const editContactOperation = createAsyncThunk(
     }
   }
 );
+
+export const logoutOperation = createAsyncThunk(
+  'auth/logout',
+  async (_, thunkAPI) => {
+    try {
+      await axios.post('/users/logout');
+      return;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

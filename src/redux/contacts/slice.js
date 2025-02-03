@@ -4,6 +4,7 @@ import {
   addContactOperation,
   deleteContactOperation,
   editContactOperation,
+  logoutOperation,
 } from './operations';
 
 const contactsSlice = createSlice({
@@ -65,6 +66,18 @@ const contactsSlice = createSlice({
         state.loading = false;
       })
       .addCase(editContactOperation.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.loading = false;
+      })
+      .addCase(logoutOperation.pending, state => {
+        state.loading = true;
+      })
+      .addCase(logoutOperation.fulfilled, state => {
+        state.items = [];
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(logoutOperation.rejected, (state, action) => {
         state.error = action.error.message;
         state.loading = false;
       });
