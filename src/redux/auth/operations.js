@@ -2,7 +2,19 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = 'https://connections-api.goit.global';
+// axios.defaults.baseURL = 'https://connections-api.goit.global';
+
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+axios.defaults.baseURL = isDevelopment
+  ? 'http://localhost:9393'
+  : 'https://contacts-app-5c5h.onrender.com';
+
+axios.defaults.withCredentials = true;
+
+// axios.defaults.baseURL = 'https://contacts-app-5c5h.onrender.com';
+
+// axios.defaults.withCredentials = true;
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -43,15 +55,18 @@ export const loginThunk = createAsyncThunk(
   }
 );
 
-export const logoutThunk = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  try {
-    await axios.post('/users/logout');
+export const logoutThunk = createAsyncThunk(
+  'auth/logout',
+  async (_, thunkAPI) => {
+    try {
+      await axios.post('/users/logout');
 
-    clearAuthHeader();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+      clearAuthHeader();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const refreshUserThunk = createAsyncThunk(
   'auth/refresh',
